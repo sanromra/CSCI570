@@ -1,0 +1,22 @@
+Contributions of the team
+
+2105844901 - Rafael Vicente Sanchez Romero : Coding, Testing, Report
+9270733359 - Dimitar Kirilov               : Coding, Testing, Report
+6190891518 - Nishant Udgaonkar             : Coding, Testing, Report
+
+(All 3 of us sat together and completed the assignment.)
+
+======================================================
+Summary of findings for the sequence alignment problem
+======================================================
+
+Results:
+  1. The memory usage of the efficient version increases very slowly with respect to the input size. This is expected because we are only using a nx2 matrix for the memoization in the dynamic programming computation.
+  2. The memory usage of the non-efficient version increases exponentially with respect to the input size. This is expected because we are using a nxm matrix for the memoization in the dynamic programming computation. This matrix grows in size with respect to the length of both input strings, and not just one as in the memory efficient version.
+  3. The time taken grows exponentially with respect to the input size in both the efficient and non-efficient versions.
+  4. The memory efficient version takes more time than the non-efficient version because multiple smaller dynamic programming problems need to be solved while backtracking to get the optimal alignment.
+
+Insights/Observations:
+  1. Neither version is strictly better than the other. If the input strings are small enough that the entire dynamic programming matrix can fit in memory, then the non-efficient version should be used because it gives the optimal alignment in less time. If the input strings are too large for the dynamic programming matrix to fit in memory then the memory efficient version should be used to guarantee that an answer is obtained, although it will take longer.
+  2. Instead of having the most optimal memory efficiency by using a nx2 matrix, we can use a larger number of columns to have faster performance at the cost of higher memory usage. Of course, this larger number of columns should be found so that the entire matrix fits in memory.
+  3. In the memory efficient version, we can parellelize the process of finding the optimal point at which to split the second string into 2 threads/processes, which would result in better time performance. This corresponds to the 2 calls to "sequence_alignment_efficient" in the "divide_and_conquer" function in our code.
